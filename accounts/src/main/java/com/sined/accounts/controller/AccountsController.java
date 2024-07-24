@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
         description = "CREATE, READ, UPDATE, DELETE accounts using this API"
 )
 @RestController
-@RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Validated
 public class AccountsController {
@@ -49,7 +49,7 @@ public class AccountsController {
             responseCode = AccountsConstants.STATUS_201,
             description = AccountsConstants.MESSAGE_201
     )
-    @PostMapping(path = "/account")
+    @PostMapping
     public ResponseEntity<ResponseDto> createAccount(@Valid @RequestBody CustomerDto customerDto) {
         accountsService.createAccount(customerDto);
         return ResponseEntity
@@ -66,7 +66,7 @@ public class AccountsController {
             responseCode = AccountsConstants.STATUS_200,
             description = AccountsConstants.MESSAGE_200
     )
-    @GetMapping(path = "/account/{mobileNumber}")
+    @GetMapping(path = "/{mobileNumber}")
     public ResponseEntity<CustomerDto> fetchAccountDetails(
             @Pattern(regexp = "^\\d{10}$", message = "Mobile Number format not valid!")
             @PathVariable String mobileNumber) {
@@ -95,7 +95,7 @@ public class AccountsController {
             )
     }
     )
-    @PutMapping(path = "/account")
+    @PutMapping
     public ResponseEntity<ResponseDto> updateAccount(@Valid @RequestBody CustomerDto customerDto) {
         boolean isUpdated = accountsService.updateAccount(customerDto);
         if (isUpdated) {
@@ -128,7 +128,7 @@ public class AccountsController {
             )
     }
     )
-    @DeleteMapping(path = "/account/{mobileNumber}")
+    @DeleteMapping(path = "/{mobileNumber}")
     public ResponseEntity<ResponseDto> deleteAccount(
             @Pattern(regexp = "^\\d{10}$", message = "Mobile Number format not valid!")
             @PathVariable String mobileNumber) {
