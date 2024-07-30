@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+build:
+  version: 0.1
+accounts:
+  message: "Welcome to Sined accounts related local APIs "
+  contactDetails:
+    name: "John Doe - Prod Lead"
+    email: "john@sined.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345
