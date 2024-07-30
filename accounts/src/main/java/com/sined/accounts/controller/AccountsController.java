@@ -2,7 +2,6 @@ package com.sined.accounts.controller;
 
 import com.sined.accounts.constants.AccountsConstants;
 import com.sined.accounts.dto.AccountsDto;
-import com.sined.accounts.dto.AccountsInfoDto;
 import com.sined.accounts.dto.CustomerDto;
 import com.sined.accounts.dto.ErrorResponseDto;
 import com.sined.accounts.dto.ResponseDto;
@@ -17,8 +16,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,21 +35,11 @@ import org.springframework.web.bind.annotation.RestController;
 )
 @RestController
 @RequestMapping(path = "/api/accounts", produces = MediaType.APPLICATION_JSON_VALUE)
+@AllArgsConstructor
 @Validated
 public class AccountsController {
 
-    private final IAccountsService accountsService;
-    @Value("${build.version}")
-    private String buildVersion;
-    @Autowired
-    private Environment environment;
-
-    @Autowired
-    private AccountsInfoDto accountsInfoDto;
-
-    public AccountsController(IAccountsService iAccountsService) {
-        this.accountsService = iAccountsService;
-    }
+    IAccountsService accountsService;
 
     @Operation(
             summary = "CREATE account",
@@ -155,61 +142,5 @@ public class AccountsController {
         }
     }
 
-
-    @Operation(
-            summary = "Fetch build version",
-            description = "Method that allows you to fetch build version of the app"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = AccountsConstants.STATUS_200,
-                    description = AccountsConstants.MESSAGE_200
-            ),
-            @ApiResponse(
-                    responseCode = AccountsConstants.STATUS_500,
-                    description = AccountsConstants.MESSAGE_500,
-                    content = @Content(
-                            schema = @Schema(
-                                    implementation = ErrorResponseDto.class
-                            )
-                    )
-            )
-    }
-    )
-    @GetMapping(path = "/version")
-    public ResponseEntity<ResponseDto> fetchBuildVersion() {
-        return ResponseEntity.ok(new ResponseDto(AccountsConstants.STATUS_200, buildVersion));
-    }
-
-    @Operation(
-            summary = "Fetch env variables",
-            description = "Method that allows you to fetch environment variables"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = AccountsConstants.STATUS_200,
-                    description = AccountsConstants.MESSAGE_200
-            ),
-            @ApiResponse(
-                    responseCode = AccountsConstants.STATUS_500,
-                    description = AccountsConstants.MESSAGE_500,
-                    content = @Content(
-                            schema = @Schema(
-                                    implementation = ErrorResponseDto.class
-                            )
-                    )
-            )
-    }
-    )
-    @GetMapping(path = "/env")
-    public ResponseEntity<ResponseDto> fetchEnvironmentVariables() {
-        return ResponseEntity
-                .ok(new ResponseDto(AccountsConstants.STATUS_200, environment.getProperty("MAVEN_HOME")));
-    }
-
-    @GetMapping(path = "/accounts-info")
-    public ResponseEntity<ResponseDto> fetchAccountsContactInfo() {
-        return ResponseEntity
-                .ok(new ResponseDto(AccountsConstants.STATUS_200, accountsInfoDto.toString()));
-    }
+    
 }

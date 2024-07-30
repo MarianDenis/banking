@@ -3,6 +3,8 @@ server:
 spring:
   application:
     name: accounts
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -17,19 +19,4 @@ spring:
       ddl-auto: update
     show-sql: true
   config:
-    import:
-      - "application_qa.yml"
-      - "application_prod.yml"
-  profiles:
-    active:
-      "qa"
-build:
-  version: 0.1
-accounts:
-  message: "Welcome to Sined accounts related local APIs "
-  contactDetails:
-    name: "John Doe - Developer"
-    email: "john@sined.com"
-  onCallSupport:
-    - (555) 555-1234
-    - (555) 523-1345
+    import: "optional:configserver:http://localhost:8071/"
