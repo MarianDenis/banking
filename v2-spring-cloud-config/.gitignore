@@ -1,0 +1,33 @@
+# Root-level .gitignore
+
+# Maven/Gradle build files
+target/
+build/
+
+# Logs
+*.log
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# MacOS system files
+.DS_Store
+
+# Docker
+docker-compose.override.yml
+*.env
+
+# Java compiled class files
+*.class
+
+# Spring Boot specific
+spring-boot-*.jar
+
+# Miscellaneous
+*.swp
+*.swo
+*.bak
+*~
