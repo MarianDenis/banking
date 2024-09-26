@@ -96,7 +96,7 @@
 				<version>3.4.1</version>
 				<configuration>
 					<to>
-						<image>mdenisgl/${project.artifactId}:s8</image>
+						<image>mdenisgl/${project.artifactId}:s9</image>
 					</to>
 				</configuration>
 			</plugin>

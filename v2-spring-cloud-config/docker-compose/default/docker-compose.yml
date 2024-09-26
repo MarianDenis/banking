@@ -30,7 +30,7 @@ services:
       service: microservice-db-config
 
   configserver:
-    image: "mdenisgl/configserver:s8"
+    image: "mdenisgl/configserver:s9"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -45,7 +45,7 @@ services:
       service: microservice-base-config
 
   eurekaserver:
-    image: "mdenisgl/eurekaserver:s8"
+    image: "mdenisgl/eurekaserver:s9"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -62,7 +62,7 @@ services:
       SPRING_APPLICATION_NAME: "eurekaserver"
 
   accounts:
-    image: "mdenisgl/accounts:s8"
+    image: "mdenisgl/accounts:s9"
     container_name: accounts-ms
     ports:
       - "8080:8080"
@@ -77,7 +77,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "mdenisgl/cards:s8"
+    image: "mdenisgl/cards:s9"
     container_name: cards-ms
     ports:
       - "9000:9000"
@@ -92,7 +92,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "mdenisgl/loans:s8"
+    image: "mdenisgl/loans:s9"
     container_name: loans-ms
     ports:
       - "8090:8090"
