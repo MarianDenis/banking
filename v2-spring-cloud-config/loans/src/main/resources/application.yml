@@ -56,3 +56,8 @@ info:
     name: "loans"
     description: "Loans application"
     version: "1.0"
+
+
+logging:
+  level:
+    com.eazybytes.loans.controller: DEBUG
